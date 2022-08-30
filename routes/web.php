@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -22,9 +23,8 @@ use App\Http\Controllers\ComentarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-});
+//No se pone el arreglo pk solo tiene un unico metodo de tipo invoke
+Route::get('/', HomeController::class)->name('home');
 
 //Perfil
 Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index');

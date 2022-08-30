@@ -10,32 +10,13 @@
             <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post {{ $post->titulo }}">
             <div class="p-3">
                 @auth
-                    @if ($post->checkLike(auth()->user()))
-                        <form action="{{ route('posts.likes.destroy', $post) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <div class="my-4 flex items-center gap-4">
-                                <button type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="red" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                    @else
-                        <form action="{{ route('posts.likes.store', $post) }}" method="POST">
-                            @csrf
-                            <div class="my-4 flex items-center gap-4">
-                                <button type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                    @endif
+
+                    @php
+                        $mensaje = "Hola desde la vista";
+                    @endphp
+
+                    <livewire:like-post :post="$post" />
                 @endauth
-                <p class="font-bold">{{ $post->likes->count() }} <span class="font-normal">Likes</span></p>
             </div>
             <div>
                 <p class="font-bold">{{ $post->user->username }}</p>
